@@ -9,16 +9,16 @@ public class Main {
         public void balancetree(Position<Entry<Integer,String>> center){
             restructure(center);
         }
+        public void rotateTree(Position<Entry<Integer,String>> center){
+            rotate(center);
+        }
+
+        public void newrotate(Integer k){
+           Position<Entry<Integer, String >> center = treeSearch(root(), k);
+           rotateTree(center);
+        }
     }
     public static void main(String[] args) {
-
-
-        TreeMap<Integer,String> map = new TreeMap<>();
-        map.put(1,"A");
-        map.put(2,"B");
-        map.put(3,"C");
-        map.put(4,"D");
-        map.put(5,"E");
 
         ArbolEjemplo<Integer, String> arbol = new ArbolEjemplo<>();
         arbol.put(1,"A");
@@ -27,8 +27,6 @@ public class Main {
         arbol.put(4,"D");
         arbol.put(5,"E");
 
-        Position<Entry<Integer,String>> root = arbol.root();
-        arbol.balancetree(root);
-
+        arbol.newrotate(2);
     }
 }
