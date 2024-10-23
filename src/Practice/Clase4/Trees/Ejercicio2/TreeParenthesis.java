@@ -1,10 +1,11 @@
 package Practice.Clase4.Trees.Ejercicio2;
 
+import ADT.LinkedBinaryTree;
 import ADT.LinkedTree;
 import ADT.Position;
 
-public class TreeParenthesis<E> extends LinkedTree<E> {
-
+public class TreeParenthesis<E> extends LinkedBinaryTree<E> {
+/*
     public String parentesisExpresion(Position<E> p, int indent){
         Node<E> node = (Node<E>) p;
         StringBuilder expression = new StringBuilder();
@@ -21,5 +22,5 @@ public class TreeParenthesis<E> extends LinkedTree<E> {
         }else
             expression.append(node.getElement().toString()).append("\n");
         return expression.toString();
-    }
+    }*/
 }
