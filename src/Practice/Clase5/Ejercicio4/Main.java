@@ -1,8 +1,6 @@
 package Practice.Clase5.Ejercicio4;
 
-import ADT.Entry;
-import ADT.Position;
-import ADT.TreeMap;
+
 import Practice.Clase5.BalanceArbol;
 
 public class Main {
