@@ -6,8 +6,8 @@ import java.util.ArrayList;
  * Map implementation using hash table with linear probing.
  */
 public class ProbeHashMap<K,V> extends AbstractHashMap<K,V> {
-    private MapEntry<K,V>[] table;        // a fixed array of entries (all initially null)
-    private MapEntry<K,V> DEFUNCT = new MapEntry<>(null, null);   //sentinel
+    protected MapEntry<K,V>[] table;        // a fixed array of entries (all initially null)
+    protected MapEntry<K,V> DEFUNCT = new MapEntry<>(null, null);   //sentinel
 
     // provide same constructors as base class
     /** Creates a hash table with capacity 17 and prime factor 109345121. */
@@ -27,7 +27,7 @@ public class ProbeHashMap<K,V> extends AbstractHashMap<K,V> {
     }
 
     /** Returns true if location is either empty or the "defunct" sentinel. */
-    private boolean isAvailable(int j) {
+    protected boolean isAvailable(int j) {
         return (table[j] == null || table[j] == DEFUNCT);
     }
 
@@ -41,7 +41,7 @@ public class ProbeHashMap<K,V> extends AbstractHashMap<K,V> {
      * @param k the key
      * @return index of found entry or if not found, value -(a+1) where a is index of first available slot
      */
-    private int findSlot(int h, K k) {
+    protected int findSlot(int h, K k) {
         int avail = -1;                               // no slot available (thus far)
         int j = h;                                    // index while scanning table
         do {
