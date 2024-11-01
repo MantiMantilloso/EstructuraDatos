@@ -88,4 +88,25 @@ public class ChainHashMap<K,V> extends AbstractHashMap<K,V> {
                     buffer.add(entry);
         return buffer;
     }
+
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < capacity; i++) {
+            sb.append("Espacio [").append(i).append("]: ");
+            UnsortedTableMap<K, V> bucket = table[i];
+
+            if (bucket == null || bucket.isEmpty()) {
+                sb.append("Vacío\n");
+            } else {
+                sb.append("Ocupado:\n");
+                for (Entry<K, V> entry : bucket.entrySet()) {
+                    sb.append("  Key: ").append(entry.getKey())
+                            .append(", Value: ").append(entry.getValue()).append("\n");
+                }
+            }
+        }
+        return sb.toString();
+    }
 }
