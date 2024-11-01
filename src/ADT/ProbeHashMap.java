@@ -119,7 +119,6 @@ public class ProbeHashMap<K,V> extends AbstractHashMap<K,V> {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Estructura de la ProbeHashMap con Linear Probing:\n");
 
         for (int i = 0; i < capacity; i++) {
             sb.append("Espacio [").append(i).append("]: ");
