@@ -116,4 +116,26 @@ public class ProbeHashMap<K,V> extends AbstractHashMap<K,V> {
             if (!isAvailable(h)) buffer.add(table[h]);
         return buffer;
     }
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Estructura de la ProbeHashMap con Linear Probing:\n");
+
+        for (int i = 0; i < capacity; i++) {
+            sb.append("Espacio [").append(i).append("]: ");
+            MapEntry<K, V> entry = table[i];
+
+            if (entry == null) {
+                sb.append("Vacío\n");
+            } else if (entry == DEFUNCT) {
+                sb.append("DEFUNCT\n");
+            } else {
+                sb.append("Ocupado - Clave: ").append(entry.getKey())
+                        .append(", Valor: ").append(entry.getValue()).append("\n");
+            }
+        }
+
+        return sb.toString();
+    }
+
 }
