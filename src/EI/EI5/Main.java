@@ -1,9 +1,6 @@
 package EI.EI5;
 
-import ADT.ChainHashMap;
-import ADT.Entry;
-import ADT.ProbeHashMap;
-import ADT.UnsortedTableMap;
+import ADT.*;
 
 public class Main {
 
@@ -26,10 +23,10 @@ public class Main {
         Factura f5 = new Factura("12395", "Alejandro", 890.00);
 
         Factura [] facturas = {f1, f2, f3, f4, f5};
-
         /**
          * Section 1: Separate Chaining
          */
+        System.out.println("-------------------------------------------------------\nPrueba de colisiones 1: Separate Chaining");
         ChainHashMap<String, Factura> chainMap = new ChainHashMap<>(cap); // Tamaño de capacidad inicial
         System.out.println("Estructura de la ChainHashMap:");
         // Insertar facturas en el mapa
@@ -41,7 +38,7 @@ public class Main {
         /**
          * Section 2: Linear Probing
          */
-
+        System.out.println("-------------------------------------------------------\nPrueba de colisiones 2: Linear Probing");
         ProbeHashMap<String,Factura> probeMap = new ProbeHashMap<>(cap);
 
         // Imprimir la estructura completa de la ChainHashMap
@@ -56,24 +53,13 @@ public class Main {
 
         /**
          * Section 3: Double Hashing
-         * No es una nueva estructura, se definieron dos funciones hash1 y hash2, las cuales simulan un double hash
          */
-
-        String[] keys = {f1.getNumero(), f2.getNumero(), f3.getNumero(), f4.getNumero(), f5.getNumero()};
-        System.out.println("Simulación de Double Hashing:");
-        for (String key : keys) {
-            int hash1 = hash1(key, cap);
-            int hash2 = hash2(key);
-            System.out.println("Clave: " + key);
-            System.out.println("  - hash1: " + hash1);
-            System.out.println("  - hash2: " + hash2);
-
-            // Simular posiciones en caso de colisión
-            for (int i = 0; i < cap; i++) {
-                int index = (hash1 + i * hash2) % cap;
-                System.out.println("    Intento " + (i + 1) + ": índice " + index);
-            }
-            System.out.println();
+        System.out.println("-------------------------------------------------------\nPrueba de colisiones 3: Double Hashing");
+        DoubleHashMap<String,Factura> doubleMap = new DoubleHashMap<>(cap);
+        System.out.println("Estructura de la DoubleHashMap:");
+        for (Factura factura : facturas){
+            doubleMap.put(factura.getNumero(), factura);
+            System.out.println(doubleMap);
         }
 
 
