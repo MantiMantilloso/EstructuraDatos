@@ -4,14 +4,6 @@ import ADT.*;
 
 public class Main {
 
-    public static int hash1(String key, int capacity) {
-        return Math.abs(key.hashCode()) % capacity;
-    }
-
-    public static int hash2(String key) {
-        return 7 - (Math.abs(key.hashCode()) % 7);  // Ejemplo usando 7 como un número primo
-    }
-
     public static void main(String[] args) {
         int cap = 11; //capacity of the HashMap
 

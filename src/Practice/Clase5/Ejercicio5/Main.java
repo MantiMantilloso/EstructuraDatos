@@ -14,6 +14,5 @@ public class Main {
         arbol2.put(11,"input7");
         arbol2.put(13,"input8");
 
-        System.out.println(arbol2.toString());
     }
 }

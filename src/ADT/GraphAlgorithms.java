@@ -209,6 +209,60 @@ public class GraphAlgorithms {
     }
 
     //Implementar Bellman-Ford
+    /**
+     * Computes shortest-path distances from src vertex to all reachable vertices of g.
+     * This implementation uses the Bellman-Ford algorithm.
+     *
+     * The edge's element is assumed to be its integral weight.
+     * @throws IllegalArgumentException if the graph contains a negative-weight cycle.
+     */
+    public static <V> Map<Vertex<V>, Integer>
+    shortestPathLengthsBellmanFord(Graph<V, Integer> g, Vertex<V> src) {
+        // Map to store the shortest distances to each vertex
+        Map<Vertex<V>, Integer> distance = new ProbeHashMap<>();
+        // Map to store the predecessor of each vertex (for reconstructing paths, if needed)
+        Map<Vertex<V>, Vertex<V>> predecessor = new ProbeHashMap<>();
+
+        // Step 1: Initialize distances
+        for (Vertex<V> v : g.vertices()) {
+            if (v == src)
+                distance.put(v, 0); // Distance to source is 0
+            else
+                distance.put(v, Integer.MAX_VALUE); // Distance to all other vertices is "infinity"
+            predecessor.put(v, null); // No predecessor initially
+        }
+
+        // Step 2: Relax all edges |V| - 1 times
+        int numVertices = g.numVertices();
+        for (int i = 1; i < numVertices; i++) {
+            for (Edge<Integer> e : g.edges()) {
+                Vertex<V>[] endpoints = g.endVertices(e);
+                Vertex<V> u = endpoints[0];
+                Vertex<V> v = endpoints[1];
+                int weight = e.getElement();
+
+                // Relaxation step
+                if (distance.get(u) != Integer.MAX_VALUE && distance.get(u) + weight < distance.get(v)) {
+                    distance.put(v, distance.get(u) + weight);
+                    predecessor.put(v, u);
+                }
+            }
+        }
+
+        // Step 3: Check for negative-weight cycles
+        for (Edge<Integer> e : g.edges()) {
+            Vertex<V>[] endpoints = g.endVertices(e);
+            Vertex<V> u = endpoints[0];
+            Vertex<V> v = endpoints[1];
+            int weight = e.getElement();
+
+            if (distance.get(u) != Integer.MAX_VALUE && distance.get(u) + weight < distance.get(v)) {
+                throw new IllegalArgumentException("Graph contains a negative-weight cycle");
+            }
+        }
+
+        return distance; // Return the distances to all vertices
+    }
 
 
 
